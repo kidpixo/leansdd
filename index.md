@@ -160,7 +160,3 @@ The agent never needs the project's entire intellectual history. It needs:
 
 That is why the repository itself becomes the agent's external memory — small, curated, and
 always up to date.
-
----
-
-*Framework refined from an external review (ChatGPT, 2026-08).*
