@@ -1,6 +1,6 @@
 # Lean SDD - LSDD
 
-Lean Spec-Driven Development (LSSD) : SDD with one `AGENTS.md`.
+Lean Spec-Driven Development (LSSD) : SDD with one [AGENTS.md](https://github.com/kidpixo/leansdd/blob/master/AGENTS.md).
 
 A context-bounded, decision-spec driven development workflow for LLM-assisted software development
 
