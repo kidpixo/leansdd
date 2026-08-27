@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lean SDD
+---
+
 # Lean SDD - LSDD
 
 Lean Spec-Driven Development (LSSD) : SDD with one [AGENTS.md](https://github.com/kidpixo/leansdd/blob/master/AGENTS.md).
