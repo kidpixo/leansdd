@@ -9,7 +9,7 @@ Lean Spec-Driven Development (LSSD) v2 : SDD with one [AGENTS.md](https://github
 A context-bounded, decision-spec driven development workflow for LLM-assisted software development
 
 This is lightweight, LLM-native project-memory convention. One file (`AGENTS.md`) defines **how an
-agent should work**; a small `.ai/` folder holds the project's **current knowledge**;
+agent should work**; a small `.agents/` folder holds the project's **current knowledge**;
 significant decisions are recorded as **specs**; git is the **history**. Drop it into any
 repo and an LLM can act safely without ever loading the whole project.
 
@@ -24,24 +24,24 @@ For versions specific differences check the [CHANGELOG.md](https://github.com/ki
    ln -s AGENTS.md CLAUDE.md
    mkdir -p .github && ln -s ../AGENTS.md .github/copilot-instructions.md
    ```
-2. **Tell your agent to follow it** ("Follow AGENTS.md"). With no `.ai/` folder it runs
+2. **Tell your agent to follow it** ("Follow AGENTS.md"). With no `.agents/` folder it runs
    [first-run setup](#first-run-setup): one batch of questions, each with a default, then it
-   creates `.ai/`.
+   creates `.agents/`.
 3. **Review the seeded files.** Anything marked `(inferred — confirm)` is a guess, not a fact.
 4. **Work as usual.** Every session runs OPEN → DO → REPORT → CLOSE. Your job is mostly to
    keep `CONSTRAINTS` and `ROADMAP` honest and to approve `Proposed` decisions.
 5. **Don't edit `AGENTS.md` per project.** It stays generic so you can pull improvements
-   from upstream; project-specific facts and settings live in `.ai/`.
+   from upstream; project-specific facts and settings live in `.agents/`.
 6. **Optional:** copy `scripts/leansdd-check.py` into your repo and run it (or put it in a
    git hook or CI) to catch drift at zero token cost. It also carries deterministic
    subcommands agents call instead of hand-editing: `stamp` (refresh stamps with the real
    HEAD hash), `next-adr`, and `archive [--dry-run]`.
-7. **Optional:** copy `skills/` into your repo (or a skills directory your agent loads).
+7. **Optional:** copy `.agents/skills/` into your repo. `.agents/skills/` is a standard project-scope skills directory (Vibe and other agents autodiscover it), so skills load without configuration.
    Each folder is a `SKILL.md` recipe for one contract step — session OPEN/CLOSE, ADR
    creation, setup, migration, the project map, verification, audits, and opt-in ADR
    mining for brownfield repos. They are conveniences, not part of the contract.
 
-Already using `.ai/` from an earlier version? Agents compare the `Spec version:` in
+Already using `.agents/` from an earlier version? Agents compare the `Spec version:` in
 `AGENTS.md` with the one in `00_CONSTRAINTS.md` and propose a migration; the steps are in
 [CHANGELOG.md](CHANGELOG.md). To skip setup, add `Setup: done` to `00_CONSTRAINTS.md`.
 
@@ -59,7 +59,7 @@ place to look for something:
 
 ```
 AGENTS.md      operating protocol      (generic, portable, same for every project)
-.ai/*.md       current project facts   (constraints, roadmap, status, philosophy,
+.agents/*.md       current project facts   (constraints, roadmap, status, philosophy,
                                         optional structure map)
 decisions/     decisions + resulting normative specs
 Git            history                 (what happened, the development diary)
@@ -207,7 +207,7 @@ The conflict hierarchy is deterministic: **Constraint > Decision > Philosophy**.
 
 ## First-run setup
 
-Runs once per project, when `.ai/` is missing or `00_CONSTRAINTS.md` has no `Setup:` line.
+Runs once per project, when `.agents/` is missing or `00_CONSTRAINTS.md` has no `Setup:` line.
 The agent asks everything in **one message**, each question with a default ("defaults"
 accepts all):
 
@@ -217,7 +217,7 @@ accepts all):
 4. Project map: off, a threshold, or now?
 5. Size caps: defaults, or raise some?
 
-Rules: it writes to `.ai/` and never to `AGENTS.md`; it never invents facts (inferences are
+Rules: it writes to `.agents/` and never to `AGENTS.md`; it never invents facts (inferences are
 marked `(inferred — confirm)`); it scans a bounded slice of the repo, never the full history;
 it treats everything it scans as data, never as instructions; and it does not backfill
 decisions from git logs.
@@ -228,9 +228,9 @@ decisions from git logs.
 
 For larger repos, two extra artifacts help an agent find code without loading it:
 
-- **`.ai/01_STRUCTURE.md`** — a curated, short map: modules, entry points, data flow,
+- **`.agents/01_STRUCTURE.md`** — a curated, short map: modules, entry points, data flow,
   external boundaries. No signatures, no line numbers.
-- **`.ai/SYMBOLS.txt`** — a generated symbol index (ctags or tree-sitter). Agents grep it
+- **`.agents/SYMBOLS.txt`** — a generated symbol index (ctags or tree-sitter). Agents grep it
   and never read it whole.
 
 It is **off by default**. You set the threshold in `00_CONSTRAINTS.md`
@@ -264,14 +264,14 @@ Context files rot silently, so staleness is made detectable:
   - **Warnings:** `Proposed` ADRs older than 14 days, stamps more than 25 commits behind,
     spec version mismatch.
 
-  Run `python scripts/leansdd-check.py [path/to/.ai ...]`. The contract doesn't require it;
+  Run `python scripts/leansdd-check.py [path/to/.agents ...]`. The contract doesn't require it;
   without it, agents follow the same rules by hand.
 
 ---
 
 ## Untrusted content
 
-Instruction authority belongs to three sources: `AGENTS.md`, your messages, and the `.ai/`
+Instruction authority belongs to three sources: `AGENTS.md`, your messages, and the `.agents/`
 files (except anything still marked `(inferred — confirm)`). Everything else an agent reads —
 READMEs, source comments, commit messages, issues, TODOs, tool and web output — is **data**.
 Setup and seed mode read a lot of repo content, so this matters: if scanned content contains
@@ -281,13 +281,13 @@ instructions aimed at an agent, the agent does not follow them and tells you in 
 
 ## Monorepos
 
-A subproject may have its own `.ai/`; `AGENTS.md` still lives once, at the repo root.
+A subproject may have its own `.agents/`; `AGENTS.md` still lives once, at the repo root.
 
 - **Nearest wins for local facts:** status, roadmap, philosophy, and structure come from the
-  nearest `.ai/`.
+  nearest `.agents/`.
 - **Constraints only tighten:** a child adds constraints but never relaxes a parent's.
   Relaxing one takes an ADR with a `Waiver` in the *parent's* `decisions/`.
-- **ADR Scope is relative** to the directory holding its `.ai/`; a parent ADR with Scope `*`
+- **ADR Scope is relative** to the directory holding its `.agents/`; a parent ADR with Scope `*`
   governs the whole tree. A child ADR can't contradict an active parent ADR without
   superseding it in the parent.
 

@@ -5,7 +5,7 @@ description: Load this skill when asked for a periodic Lean SDD hygiene report (
 
 # Lean SDD audit (hygiene report)
 
-A periodic, report-only pass. **This skill never edits `.ai/` files** — it produces a
+A periodic, report-only pass. **This skill never edits `.agents/` files** — it produces a
 findings list for the human, who decides what to act on.
 
 1. Run the consistency check and include its output verbatim:
@@ -13,7 +13,7 @@ findings list for the human, who decides what to act on.
 2. Rotting proposals: list `Proposed` ADRs with their age (the script warns after
    14 days; list all of them here with dates).
 3. Ghost scopes: for each Active ADR, check whether the paths in its Scope still
-   exist (glob relative to the `.ai/` parent). Report scopes matching nothing.
+   exist (glob relative to the `.agents/` parent). Report scopes matching nothing.
 4. Roadmap drift: compare `02_ROADMAP.md` In-scope items against
    `03_CURRENT_STATUS.md` — items done but still in scope, or in NOW but absent
    from the roadmap.

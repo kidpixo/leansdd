@@ -1,7 +1,7 @@
 # Changelog
 
 Spec versions are declared at the top of `AGENTS.md` (`Spec version: N`). A project records
-the version it was last migrated to in `.ai/00_CONSTRAINTS.md`. Agents flag a mismatch on
+the version it was last migrated to in `.agents/00_CONSTRAINTS.md`. Agents flag a mismatch on
 OPEN and propose the migration; they never apply it silently.
 
 ## Spec version 2
@@ -21,13 +21,13 @@ OPEN and propose the migration; they never apply it silently.
   they are surfaced in REPORT.
 - **Optional project map:** `01_STRUCTURE.md` + generated `SYMBOLS.txt`, off by default
   (`Map threshold:`).
-- **First-run setup:** one batch of questions for new projects, answers written to `.ai/`.
-- **Monorepos:** nested `.ai/` folders; constraints and ADRs compose outer-over-inner.
+- **First-run setup:** one batch of questions for new projects, answers written to `.agents/`.
+- **Monorepos:** nested `.agents/` folders; constraints and ADRs compose outer-over-inner.
 - **Optional `scripts/leansdd-check.py`:** zero-token consistency check.
 
 ### Migrating a version 1 project
 
-1. In `.ai/00_CONSTRAINTS.md`, add a `## Settings` block with `Setup: done YYYY-MM-DD` and
+1. In `.agents/00_CONSTRAINTS.md`, add a `## Settings` block with `Setup: done YYYY-MM-DD` and
    `Spec version: 2` (see the template in `AGENTS.md`). Optionally add `Map threshold:`
    and `Cap overrides:`.
 2. Stamp every live file (status, constraints, roadmap, philosophy, decision index):
@@ -40,5 +40,5 @@ OPEN and propose the migration; they never apply it silently.
 
 ## Spec version 1
 
-Original release: `AGENTS.md`, `.ai/` knowledge files with tiers and caps, ADRs as specs,
+Original release: `AGENTS.md`, `.agents/` knowledge files with tiers and caps, ADRs as specs,
 and the OPEN → DO → REPORT → CLOSE contract.

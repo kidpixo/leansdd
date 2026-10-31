@@ -19,7 +19,7 @@ Creates the ADR file and its index row as one atomic step. Requires
    `## Waiver` section. Never relax a constraint without one.
 4. Write `decisions/ADR-NNN-title.md` from the template in `AGENTS.md`:
    - `Status:` `Proposed` (never `Active` — that is the human's call).
-   - `Scope:` path/glob relative to the `.ai/` parent directory, or `*`.
+   - `Scope:` path/glob relative to the `.agents/` parent directory, or `*`.
    - `## Verification`: one runnable command or test id with expected result per
      check, or `manual: <steps>` naming the artifact a reviewer inspects.
    - Never invent facts; mark guesses `(inferred — confirm)`.
