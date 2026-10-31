@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Lean SDD consistency check. Stdlib only, zero LLM tokens.
 
-Usage: python scripts/leansdd-check.py [check] [path/to/.agents ...]   (default: check .agents)
-       python scripts/leansdd-check.py stamp [path/to/.agents ...]
-       python scripts/leansdd-check.py next-adr [path/to/.agents]
-       python scripts/leansdd-check.py archive [--dry-run] [path/to/.agents]
+Usage: python scripts/leansdd-check.py [check] [path/to/.ai ...]   (default: check .ai)
+       python scripts/leansdd-check.py stamp [path/to/.ai ...]
+       python scripts/leansdd-check.py next-adr [path/to/.ai]
+       python scripts/leansdd-check.py archive [--dry-run] [path/to/.ai]
 Check exits 1 on any ERROR; WARN never fails the run. Caps are read from the
 file table in AGENTS.md (single source of truth).
 """
@@ -157,7 +157,7 @@ def check_spec_version(agents_text, constraints_text):
 
 
 def locate(ai_path):
-    """Resolve an .agents dir, its AGENTS.md, repo root, and constraints text."""
+    """Resolve an .ai dir, its AGENTS.md, repo root, and constraints text."""
     ai = Path(ai_path).resolve()
     if not ai.is_dir():
         raise SystemExit(f"error: {ai} is not a directory")
@@ -233,7 +233,7 @@ def archive_over_cap(ai, agents_text, cons_text, dry_run=False):
 
 def cmd_check(argv):
     global findings
-    targets = [Path(a).resolve() for a in (argv or [".agents"])]
+    targets = [Path(a).resolve() for a in (argv or [".ai"])]
     for ai in targets:
         if not ai.is_dir():
             add("ERROR", str(ai), "not a directory")
@@ -270,7 +270,7 @@ def cmd_stamp(argv):
 
 
 def cmd_next_adr(argv):
-    ai, _, _, _ = locate(argv[0] if argv else ".agents")
+    ai, _, _, _ = locate(argv[0] if argv else ".ai")
     next_adr(ai)
     return 0
 
@@ -278,7 +278,7 @@ def cmd_next_adr(argv):
 def cmd_archive(argv):
     args = [a for a in argv if a != "--dry-run"]
     dry = "--dry-run" in argv
-    ai, agents_text, root, cons = locate(args[0] if args else ".agents")
+    ai, agents_text, root, cons = locate(args[0] if args else ".ai")
     moved = archive_over_cap(ai, agents_text,
                              cons.read_text() if cons.is_file() else "", dry_run=dry)
     if not moved:
@@ -286,10 +286,10 @@ def cmd_archive(argv):
     return 0
 
 
-USAGE = """usage: leansdd-check.py [check] [path/.agents ...]   consistency check (default)
-       leansdd-check.py stamp [path/.agents ...]     refresh stamps (date + HEAD hash)
-       leansdd-check.py next-adr [path/.agents]      print the next free ADR number
-       leansdd-check.py archive [--dry-run] [path/.agents]  move over-cap lines to archive/
+USAGE = """usage: leansdd-check.py [check] [path/.ai ...]   consistency check (default)
+       leansdd-check.py stamp [path/.ai ...]     refresh stamps (date + HEAD hash)
+       leansdd-check.py next-adr [path/.ai]      print the next free ADR number
+       leansdd-check.py archive [--dry-run] [path/.ai]  move over-cap lines to archive/
 """
 
 

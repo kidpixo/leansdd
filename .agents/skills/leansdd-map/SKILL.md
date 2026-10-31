@@ -15,7 +15,7 @@ The map is descriptive, never normative; **code wins** on any disagreement.
    (path → responsibility → entry point), External Boundaries. No signatures,
    no line numbers, no invariants.
 3. Generate the symbol index mechanically — never by hand, never from memory:
-   `ctags -R -x --output-format=u-ctags . > .agents/SYMBOLS.txt` (or tree-sitter equivalent).
+   `ctags -R -x --output-format=u-ctags . > .ai/SYMBOLS.txt` (or tree-sitter equivalent).
 4. Commit it or gitignore it, per the project's choice; if ignored, note in
    `01_STRUCTURE.md` that it is regenerated on OPEN.
 
