@@ -37,6 +37,15 @@ For versions specific differences check the [CHANGELOG.md](https://github.com/ki
    creation, setup, migration, the project map, verification, audits, and opt-in ADR
    mining for brownfield repos. They are conveniences, not part of the contract.
 
+What lands where:
+
+```
+AGENTS.md          the contract        (generic; never edited per project)
+.ai/               project knowledge   (facts, caps, stamps; created by first-run setup)
+scripts/           generic tooling     (leansdd-check.py; identical in every project)
+.agents/skills/    optional recipes    (autodiscovered by Vibe and other agents)
+```
+
 Already using `.ai/` from an earlier version? Agents compare the `Spec version:` in
 `AGENTS.md` with the one in `00_CONSTRAINTS.md` and propose a migration; the steps are in
 [CHANGELOG.md](CHANGELOG.md). To skip setup, add `Setup: done` to `00_CONSTRAINTS.md`.

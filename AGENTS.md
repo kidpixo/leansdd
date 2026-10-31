@@ -181,7 +181,9 @@ inner.
 ## Consistency check (optional)
 
 `scripts/leansdd-check.py` is a stdlib-only reference implementation that spends zero LLM
-tokens. The contract does not require it; without it, follow the rules by hand. Run
+tokens. The contract does not require it; without it, follow the rules by hand. It lives in
+`scripts/`, **outside** `.ai/`: it is generic tooling, identical in every project, not a
+project fact. Run
 `python scripts/leansdd-check.py [path/to/.ai ...]`; it exits 1 on any ERROR. Subcommands:
 `stamp` (refresh stamps with the real HEAD hash), `next-adr` (next free ADR number),
 `archive [--dry-run]` (move over-cap lines to `archive/`).
