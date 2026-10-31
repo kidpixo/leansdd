@@ -4,7 +4,7 @@ title: Lean SDD
 
 # Lean SDD - LSDD
 
-Lean Spec-Driven Development (LSSD) : SDD with one [AGENTS.md](https://github.com/kidpixo/leansdd/blob/master/AGENTS.md).
+Lean Spec-Driven Development (LSSD) v2 : SDD with one [AGENTS.md](https://github.com/kidpixo/leansdd/blob/master/AGENTS.md).
 
 A context-bounded, decision-spec driven development workflow for LLM-assisted software development
 
@@ -12,6 +12,8 @@ This is lightweight, LLM-native project-memory convention. One file (`AGENTS.md`
 agent should work**; a small `.ai/` folder holds the project's **current knowledge**;
 significant decisions are recorded as **specs**; git is the **history**. Drop it into any
 repo and an LLM can act safely without ever loading the whole project.
+
+For versions specific differences check the [CHANGELOG.md](https://github.com/kidpixo/leansdd/blob/master/CHANGELOG.md).
 
 ---
 
@@ -309,3 +311,13 @@ The agent never needs the project's entire intellectual history. It needs:
 That is why the repository itself becomes the agent's external memory — small, curated, and
 always up to date.
 
+
+## Maintainer notes
+
+`index.md` (the GitHub Pages copy) is regenerated from `README.md` by a pre-commit
+hook, so editing the README is enough — never edit `index.md` by hand. After cloning,
+enable the hook once:
+
+```bash
+git config core.hooksPath hooks
+```

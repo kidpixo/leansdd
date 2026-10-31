@@ -307,3 +307,13 @@ The agent never needs the project's entire intellectual history. It needs:
 That is why the repository itself becomes the agent's external memory — small, curated, and
 always up to date.
 
+
+## Maintainer notes
+
+`index.md` (the GitHub Pages copy) is regenerated from `README.md` by a pre-commit
+hook, so editing the README is enough — never edit `index.md` by hand. After cloning,
+enable the hook once:
+
+```bash
+git config core.hooksPath hooks
+```

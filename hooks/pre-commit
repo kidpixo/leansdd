@@ -1,0 +1,7 @@
+#!/bin/sh
+# Regenerate index.md (Jekyll Pages copy) from the staged README.md so the
+# static site can never drift from the repo page. Runs only when README.md
+# is part of the commit.
+git diff --cached --name-only | grep -qx README.md || exit 0
+{ printf 'layout: default\ntitle: Lean SDD\n---\n\n'; git show :README.md; } > index.md
+git add index.md
