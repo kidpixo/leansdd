@@ -258,9 +258,12 @@ def cmd_check(argv):
 
 
 def cmd_stamp(argv):
-    for target in (argv or ["."]):
+    for target in (argv or [".ai"]):
         ai, _, root, cons = locate(target)
-        stamp_file(cons, root)  # constraints first: settings may gate the session
+        if cons.is_file():
+            stamp_file(cons, root)  # constraints first: settings may gate the session
+        else:
+            print(f"skipped (missing): {cons}")
         for name in ("00_PHILOSOPHY.md", "01_STRUCTURE.md", "02_ROADMAP.md",
                      "03_CURRENT_STATUS.md", "decisions/index.md"):
             f = ai / name

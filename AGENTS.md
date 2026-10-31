@@ -181,7 +181,8 @@ inner.
 
 ## Consistency check (optional)
 
-`.ai/scripts/leansdd-check.py` is a stdlib-only reference implementation that spends zero LLM
+`.ai/scripts/leansdd-check.py` (copied there from the upstream repo's `scripts/`) is a
+stdlib-only reference implementation that spends zero LLM
 tokens. The contract does not require it; without it, follow the rules by hand. It lives
 under `.ai/` so the framework keeps one footprint and never collides with the host repo's
 own directories; it is generic tooling, identical in every project, **not** a live

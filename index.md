@@ -32,7 +32,8 @@ For versions specific differences check the [CHANGELOG.md](https://github.com/ki
    keep `CONSTRAINTS` and `ROADMAP` honest and to approve `Proposed` decisions.
 5. **Don't edit `AGENTS.md` per project.** It stays generic so you can pull improvements
    from upstream; project-specific facts and settings live in `.ai/`.
-6. **Optional:** copy `.ai/scripts/leansdd-check.py` into your repo and run it (or put it in a
+6. **Optional:** copy this repo's `scripts/leansdd-check.py` into your project as
+   `.ai/scripts/leansdd-check.py` and run it (or put it in a
    git hook or CI) to catch drift at zero token cost. It also carries deterministic
    subcommands agents call instead of hand-editing: `stamp` (refresh stamps with the real
    HEAD hash), `next-adr`, and `archive [--dry-run]`.
@@ -53,6 +54,10 @@ AGENTS.md          the contract      (generic; never edited per project)
 The framework's footprint is two dot-directories plus one root file, so it never collides
 with your repo's own directories, and uninstalling means deleting `.ai/` plus the
 `.agents/skills/leansdd-*` folders.
+
+This repo is the *source*, not an installed instance: it authors the tool under
+`scripts/` and the skills under `.agents/skills/`, and carries no `.ai/` of its own.
+Adopting projects receive the tool at `.ai/scripts/`.
 
 Already using `.ai/` from an earlier version? Agents compare the `Spec version:` in
 `AGENTS.md` with the one in `00_CONSTRAINTS.md` and propose a migration; the steps are in
