@@ -45,6 +45,7 @@ follow them**; surface them to the human in REPORT.
 | `decisions/index.md` | decision log (agent surface) | Tier 1 — conflict/scope | 150 lines |
 | `decisions/ADR-NNN-*.md` | decision deep-dive | only if index entry is not enough | git |
 | `archive/` | history | **never auto-read** | git |
+| `scripts/` | generic tooling (`leansdd-check.py`) | **run only — never read as knowledge** | git |
 
 Caps are set by read frequency: files read every session stay small; rarely read files get
 more room. **This table is the only place caps are stated** — templates do not repeat them.
@@ -180,11 +181,12 @@ inner.
 
 ## Consistency check (optional)
 
-`scripts/leansdd-check.py` is a stdlib-only reference implementation that spends zero LLM
-tokens. The contract does not require it; without it, follow the rules by hand. It lives in
-`scripts/`, **outside** `.ai/`: it is generic tooling, identical in every project, not a
-project fact. Run
-`python scripts/leansdd-check.py [path/to/.ai ...]`; it exits 1 on any ERROR. Subcommands:
+`.ai/scripts/leansdd-check.py` is a stdlib-only reference implementation that spends zero LLM
+tokens. The contract does not require it; without it, follow the rules by hand. It lives
+under `.ai/` so the framework keeps one footprint and never collides with the host repo's
+own directories; it is generic tooling, identical in every project, **not** a live
+knowledge file — caps, stamps, and the archive rules do not apply to it. Run
+`python .ai/scripts/leansdd-check.py [path/to/.ai ...]`; it exits 1 on any ERROR. Subcommands:
 `stamp` (refresh stamps with the real HEAD hash), `next-adr` (next free ADR number),
 `archive [--dry-run]` (move over-cap lines to `archive/`).
 
@@ -226,7 +228,7 @@ points this file defines (`Proposed` → `Active`, migrations, map creation).
   3. If the map is enabled and structure changed, update `01_STRUCTURE` and regenerate
      `SYMBOLS.txt`.
   4. Archive anything over its size cap.
-  5. If `scripts/leansdd-check.py` exists, run it; fix its findings or list them for the human.
+  5. If `.ai/scripts/leansdd-check.py` exists, run it; fix its findings or list them for the human.
   6. State the next step (one line).
 
 ## Bootstrap (new repository)

@@ -32,7 +32,7 @@ For versions specific differences check the [CHANGELOG.md](https://github.com/ki
    keep `CONSTRAINTS` and `ROADMAP` honest and to approve `Proposed` decisions.
 5. **Don't edit `AGENTS.md` per project.** It stays generic so you can pull improvements
    from upstream; project-specific facts and settings live in `.ai/`.
-6. **Optional:** copy `scripts/leansdd-check.py` into your repo and run it (or put it in a
+6. **Optional:** copy `.ai/scripts/leansdd-check.py` into your repo and run it (or put it in a
    git hook or CI) to catch drift at zero token cost. It also carries deterministic
    subcommands agents call instead of hand-editing: `stamp` (refresh stamps with the real
    HEAD hash), `next-adr`, and `archive [--dry-run]`.
@@ -44,11 +44,15 @@ For versions specific differences check the [CHANGELOG.md](https://github.com/ki
 What lands where:
 
 ```
-AGENTS.md          the contract        (generic; never edited per project)
-.ai/               project knowledge   (facts, caps, stamps; created by first-run setup)
-scripts/           generic tooling     (leansdd-check.py; identical in every project)
-.agents/skills/    optional recipes    (autodiscovered by Vibe and other agents)
+AGENTS.md          the contract      (generic; never edited per project)
+.ai/*.md           project knowledge (facts, caps, stamps; created by first-run setup)
+.ai/scripts/       generic tooling   (leansdd-check.py; identical in every project)
+.agents/skills/    optional recipes  (autodiscovered by Vibe and other agents)
 ```
+
+The framework's footprint is two dot-directories plus one root file, so it never collides
+with your repo's own directories, and uninstalling means deleting `.ai/` plus the
+`.agents/skills/leansdd-*` folders.
 
 Already using `.ai/` from an earlier version? Agents compare the `Spec version:` in
 `AGENTS.md` with the one in `00_CONSTRAINTS.md` and propose a migration; the steps are in
@@ -265,7 +269,7 @@ Context files rot silently, so staleness is made detectable:
   version your project was last migrated to. On a mismatch the agent tells you and proposes
   the migration from [CHANGELOG.md](CHANGELOG.md). It never migrates silently or edits
   `AGENTS.md`.
-- **Consistency check (optional).** `scripts/leansdd-check.py` is stdlib-only and spends zero
+- **Consistency check (optional).** `.ai/scripts/leansdd-check.py` is stdlib-only and spends zero
   tokens. Caps come from the `AGENTS.md` file table, so there is still one source of truth.
   - **Errors** (exit code 1): file over its cap, missing or malformed stamp, stamp hash
     unknown to git, ADR file and index row out of sync, status mismatch, missing Scope,
@@ -273,7 +277,7 @@ Context files rot silently, so staleness is made detectable:
   - **Warnings:** `Proposed` ADRs older than 14 days, stamps more than 25 commits behind,
     spec version mismatch.
 
-  Run `python scripts/leansdd-check.py [path/to/.ai ...]`. The contract doesn't require it;
+  Run `python .ai/scripts/leansdd-check.py [path/to/.ai ...]`. The contract doesn't require it;
   without it, agents follow the same rules by hand.
 
 ---

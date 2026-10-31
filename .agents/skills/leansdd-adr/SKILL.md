@@ -6,12 +6,12 @@ description: Load this skill when recording a new decision as an ADR, appending 
 # Lean SDD ADR (create or supersede)
 
 Creates the ADR file and its index row as one atomic step. Requires
-`scripts/leansdd-check.py`.
+`.ai/scripts/leansdd-check.py`.
 
 ## Create a new ADR
 
 1. Get the next free number (never hand-count):
-   `python scripts/leansdd-check.py next-adr`
+   `python .ai/scripts/leansdd-check.py next-adr`
 2. Check for conflicts: grep `decisions/index.md` Scope column for rows matching the
    paths this decision touches. Read any matching Active ADR. If this decision
    contradicts one, it must supersede it (below), not coexist.
@@ -25,8 +25,8 @@ Creates the ADR file and its index row as one atomic step. Requires
    - Never invent facts; mark guesses `(inferred — confirm)`.
 5. Append the index row: same status, same Scope, one-line summary, today's date.
 6. Bump the `decisions/index.md` stamp:
-   `python scripts/leansdd-check.py stamp`
-7. Run `python scripts/leansdd-check.py` and confirm no new ERROR.
+   `python .ai/scripts/leansdd-check.py stamp`
+7. Run `python .ai/scripts/leansdd-check.py` and confirm no new ERROR.
 
 ## Supersede an Active ADR
 

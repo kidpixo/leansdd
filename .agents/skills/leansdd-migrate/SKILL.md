@@ -15,8 +15,8 @@ mismatch must already have been surfaced in an OPEN step.
 3. Apply the steps exactly as written in the CHANGELOG. Do not improvise extra
    changes while in the neighborhood.
 4. Update `Spec version:` in `00_CONSTRAINTS.md` to the target version.
-5. Stamp everything: `python scripts/leansdd-check.py stamp`
-6. Run `python scripts/leansdd-check.py`; resolve findings.
+5. Stamp everything: `python .ai/scripts/leansdd-check.py stamp`
+6. Run `python .ai/scripts/leansdd-check.py`; resolve findings.
 7. Summarize what changed per version; note anything the human must still do by hand.
 
 If this file's `AGENTS.md` is *older* than the project's recorded version, do not

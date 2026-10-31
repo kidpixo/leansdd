@@ -9,7 +9,7 @@ A periodic, report-only pass. **This skill never edits `.ai/` files** — it pro
 findings list for the human, who decides what to act on.
 
 1. Run the consistency check and include its output verbatim:
-   `python scripts/leansdd-check.py`
+   `python .ai/scripts/leansdd-check.py`
 2. Rotting proposals: list `Proposed` ADRs with their age (the script warns after
    14 days; list all of them here with dates).
 3. Ghost scopes: for each Active ADR, check whether the paths in its Scope still

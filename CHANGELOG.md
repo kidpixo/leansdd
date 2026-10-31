@@ -23,7 +23,7 @@ OPEN and propose the migration; they never apply it silently.
   (`Map threshold:`).
 - **First-run setup:** one batch of questions for new projects, answers written to `.ai/`.
 - **Monorepos:** nested `.ai/` folders; constraints and ADRs compose outer-over-inner.
-- **Optional `scripts/leansdd-check.py`:** zero-token consistency check.
+- **Optional `.ai/scripts/leansdd-check.py`:** zero-token consistency check.
 
 ### Migrating a version 1 project
 
@@ -36,7 +36,7 @@ OPEN and propose the migration; they never apply it silently.
    Add a `Scope:` field to each ADR.
 4. For each `Active` ADR, add runnable checks under `## Verification`. If you cannot, set
    the ADR back to `Proposed` until you can.
-5. Optional: copy `scripts/leansdd-check.py` and run it. Fix ERRORs; WARNs are advisory.
+5. Optional: copy `.ai/scripts/leansdd-check.py` and run it. Fix ERRORs; WARNs are advisory.
 
 ## Spec version 1
 
