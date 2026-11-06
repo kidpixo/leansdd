@@ -1,6 +1,6 @@
 ---
 name: leansdd-session
-description: Load this skill at the start (OPEN) or end (CLOSE) of a working session in a Lean SDD project, when .ai/ files need freshness checks, stamps, archiving, or the consistency check.
+description: 'Load this skill at the start (OPEN) or end (CLOSE) of a working session in a Lean SDD project, when .ai/ files need freshness checks, stamps, archiving, or the consistency check.'
 ---
 
 # Lean SDD session (OPEN / CLOSE)

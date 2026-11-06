@@ -1,6 +1,6 @@
 ---
 name: leansdd-map
-description: Load this skill when creating or refreshing the optional Lean SDD project map (01_STRUCTURE.md and SYMBOLS.txt), or when a structure diff on OPEN shows files moved.
+description: 'Load this skill when creating or refreshing the optional Lean SDD project map (01_STRUCTURE.md and SYMBOLS.txt), or when a structure diff on OPEN shows files moved.'
 ---
 
 # Lean SDD project map (01_STRUCTURE + SYMBOLS)

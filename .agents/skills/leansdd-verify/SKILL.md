@@ -1,6 +1,6 @@
 ---
 name: leansdd-verify
-description: Load this skill when implementing or reviewing a change governed by an Active ADR and its Verification checks must be run and reported.
+description: 'Load this skill when implementing or reviewing a change governed by an Active ADR and its Verification checks must be run and reported.'
 ---
 
 # Lean SDD verify (run an ADR's checks)

@@ -1,6 +1,6 @@
 ---
 name: leansdd-setup
-description: Load this skill when a repo has no .ai/ folder (or 00_CONSTRAINTS.md has no Setup: line) and Lean SDD first-run setup is needed.
+description: 'Load this skill when a repo has no .ai/ folder (or 00_CONSTRAINTS.md has no Setup: line) and Lean SDD first-run setup is needed.'
 ---
 
 # Lean SDD first-run setup

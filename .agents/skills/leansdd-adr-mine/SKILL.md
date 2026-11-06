@@ -1,6 +1,6 @@
 ---
 name: leansdd-adr-mine
-description: Load this skill when explicitly asked to propose candidate ADRs for a brownfield repo by mining git history — opt-in, human-confirmed, never run unasked.
+description: 'Load this skill when explicitly asked to propose candidate ADRs for a brownfield repo by mining git history — opt-in, human-confirmed, never run unasked.'
 ---
 
 # Lean SDD ADR mining (brownfield, opt-in)

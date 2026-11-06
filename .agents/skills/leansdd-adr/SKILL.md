@@ -1,6 +1,6 @@
 ---
 name: leansdd-adr
-description: Load this skill when recording a new decision as an ADR, appending its index row, or superseding/rejecting an existing Active ADR in a Lean SDD project.
+description: 'Load this skill when recording a new decision as an ADR, appending its index row, or superseding/rejecting an existing Active ADR in a Lean SDD project.'
 ---
 
 # Lean SDD ADR (create or supersede)

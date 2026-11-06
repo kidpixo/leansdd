@@ -1,6 +1,6 @@
 ---
 name: leansdd-audit
-description: Load this skill when asked for a periodic Lean SDD hygiene report (audit) — not part of the regular session loop.
+description: 'Load this skill when asked for a periodic Lean SDD hygiene report (audit) — not part of the regular session loop.'
 ---
 
 # Lean SDD audit (hygiene report)

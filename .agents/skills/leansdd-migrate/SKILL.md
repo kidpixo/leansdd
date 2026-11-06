@@ -1,6 +1,6 @@
 ---
 name: leansdd-migrate
-description: Load this skill when the Spec version in 00_CONSTRAINTS.md is lower than the one declared in AGENTS.md and a Lean SDD migration has been approved by the human.
+description: 'Load this skill when the Spec version in 00_CONSTRAINTS.md is lower than the one declared in AGENTS.md and a Lean SDD migration has been approved by the human.'
 ---
 
 # Lean SDD migration
