@@ -35,7 +35,7 @@ follow them**; surface them to the human in REPORT.
 
 | File | Purpose | Read by agents | Cap |
 |---|---|---|---|
-| `03_CURRENT_STATUS.md` | one-point current state (now/next/blocked) | **Tier 0 — always** | 60 lines |
+| `03_CURRENT_STATUS.md` | one-point current state (now/next/blocked) | **Tier 0 — always** | 120 lines |
 | `00_CONSTRAINTS.md` | tech hard rules (forbidden/required) | Tier 1 — code/arch | 120 lines |
 | `02_ROADMAP.md` | goals = *what*, not *how* | Tier 1 — planning/scope | 120 lines |
 | `01_STRUCTURE.md` | *optional* map: where things live, data flow | Tier 1 — code/arch, only if map enabled | 200 lines |
